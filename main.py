@@ -5,16 +5,16 @@ from PIL import Image, ImageTk
 import subprocess
 import os
 
-script_directory = '../scripts/'
-image_path = '../image.png'
-icon_path = '../icon.png' 
-backup_file_path = '../data/FULL_BACKUP/full_backup_different.txt'
-mac_diff_file_path = '../data/MAC_TABLE/mac-different.txt'
-vlan_diff_file_path = '../data/VLAN/vlan-different.txt'
-access_diff_file_path = '../data/ACCESS_LIST/access-different.txt'
-istatus_diff_file_path = '../data/INTERFACE_STATUS/interface-status-different.txt'
-backup_different_file_path = '../data/FULL_BACKUP/full_backup_different.txt'
-auth_session_different_file_path = '../data/AUTH-SESSION/auth-session-different.txt'
+script_directory = './scripts/'
+image_path = './assets/image.png'
+icon_path = './assets/icon.png' 
+backup_file_path = './data/FULL_BACKUP/full_backup_different.txt'
+mac_diff_file_path = './data/MAC_TABLE/mac-different.txt'
+vlan_diff_file_path = './data/VLAN/vlan-different.txt'
+access_diff_file_path = './data/ACCESS_LIST/access-different.txt'
+istatus_diff_file_path = './data/INTERFACE_STATUS/interface-status-different.txt'
+backup_different_file_path = './data/FULL_BACKUP/full_backup_different.txt'
+auth_session_different_file_path = './data/AUTH-SESSION/auth-session-different.txt'
 
 def run_backup(ip_address, username, password):
     try:
@@ -116,14 +116,6 @@ def main():
 
     main_frame = ttk.Frame(notebook, padding="10")
     notebook.add(main_frame, text='Main')
-
-    image = Image.open(image_path)
-    image = image.resize((280, 68), Image.LANCZOS)  # Adjust the size
-    photo = ImageTk.PhotoImage(image)
-
-    image_label = tk.Label(main_frame, image=photo, bg="#f0f0f0")
-    image_label.image = photo 
-    image_label.pack(pady=45)
 
     title_label = tk.Label(main_frame, text="Device Checkpoint Center", font=("Arial", 17, "bold"))
     title_label.pack(pady=(19, 10))

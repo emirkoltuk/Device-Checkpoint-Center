@@ -8,17 +8,16 @@ username = sys.argv[2]  # SSH kullanıcı adı komut satırından alınacak
 password = sys.argv[3]  # SSH şifresi komut satırından alınacak
 port = 22
 
-# Access list tablosunu çekmek için kullanılacak komut
-command = 'show access-list'
+command = 'show authentication session'
 
 # Dosya yolları, hostname eklenerek oluşturulacak
-desktop_path = os.path.join(os.getcwd(), 'data', 'ACCESS_LIST')
-old_access_file_path = os.path.join(desktop_path, 'old-access.txt')
-new_access_file_path = os.path.join(desktop_path, 'new-access.txt')
-different_file_path = os.path.join(desktop_path, 'access-different.txt')
+desktop_path = os.path.join(os.getcwd(), 'data', 'AUTH-SESSION')
+old_authsession_file_path = os.path.join(desktop_path, 'old-auth-session.txt')
+new_authsession_file_path = os.path.join(desktop_path, 'new-auth-session.txt')
+different_file_path = os.path.join(desktop_path, 'auth-session-different.txt')
 
 # SSH bağlantısı kurma ve komutu çalıştırma
-def get_access_list(hostname, port, username, password, command, file_path):
+def get_auth_session(hostname, port, username, password, command, file_path):
     try:
         ssh = paramiko.SSHClient()
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -27,14 +26,14 @@ def get_access_list(hostname, port, username, password, command, file_path):
         output = stdout.read().decode()
         with open(file_path, 'w') as file:
             file.write(output)
-        print(f"Access list tablosu {file_path} dosyasına yazıldı.")
+        print(f"Authentication Session {file_path} dosyasına yazıldı.")
     except Exception as e:
         print(f"Hata: {e}")
     finally:
         ssh.close()
 
 # Dosyaları karşılaştırma
-def compare_access_files(old_file, new_file, diff_file):
+def compare_authsession_files(old_file, new_file, diff_file):
     try:
         with open(old_file, 'r') as f1, open(new_file, 'r') as f2:
             old_lines = set(f1.readlines())
@@ -46,8 +45,8 @@ def compare_access_files(old_file, new_file, diff_file):
     except Exception as e:
         print(f"Hata: {e}")
 
-# Yeni Access list tablosunu çekme ve dosyaya yazma
-get_access_list(hostname, port, username, password, command, new_access_file_path)
+# Yeni Authentication Session tablosunu çekme ve dosyaya yazma
+get_auth_session(hostname, port, username, password, command, new_authsession_file_path)
 
 # Dosyaları karşılaştırma
-compare_access_files(old_access_file_path, new_access_file_path, different_file_path)
+compare_authsession_files(old_authsession_file_path, new_authsession_file_path, different_file_path)

@@ -8,14 +8,13 @@ username = sys.argv[2]  # SSH kullanıcı adı komut satırından alınacak
 password = sys.argv[3]  # SSH şifresi komut satırından alınacak
 port = 22
 
-# VLAN tablosunu çekmek için kullanılacak komut
-command = 'show vlan'
+command = 'show authentication session'
 
 # Dosya yolu (yeni dosya yolu dizin yapısına göre güncellendi)
-file_path = os.path.join(os.getcwd(), 'data', 'VLAN', 'vlan-different.txt')
+file_path = os.path.join(os.getcwd(), 'data', 'AUTH-SESSION', 'auth-session-different.txt')
 
 # SSH bağlantısı kurma ve komutu çalıştırma
-def get_vlan_table(hostname, port, username, password, command, file_path):
+def get_auth_session(hostname, port, username, password, command, file_path):
     try:
         ssh = paramiko.SSHClient()
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -26,11 +25,11 @@ def get_vlan_table(hostname, port, username, password, command, file_path):
         # Veriyi dosyaya yazma
         with open(file_path, 'w') as file:
             file.write(output)
-        print(f"VLAN tablosu {file_path} dosyasına yazıldı.")
+        print(f"Authentication Session {file_path} dosyasına yazıldı.")
     except Exception as e:
         print(f"Hata: {e}")
     finally:
         ssh.close()
 
-# Fonksiyonu çağırarak VLAN tablosunu çekme ve dosyaya yazma
-get_vlan_table(hostname, port, username, password, command, file_path)
+# Fonksiyonu çağırarak Authentication Session verisini çekme ve dosyaya yazma
+get_auth_session(hostname, port, username, password, command, file_path)
