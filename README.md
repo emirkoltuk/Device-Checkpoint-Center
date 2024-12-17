@@ -114,23 +114,6 @@ Uygulamayı çalıştırdığınızda aşağıdaki seçenekler sunulacaktır:
 
 ---
 
-## 📈 Geliştirme
-### Yapılacak İyileştirmeler
-- CLI desteği eklenmesi.
-- Toplanan verilerin SQL veritabanına kaydedilmesi.
-- Daha detaylı raporlama arayüzü.
-
-Katkıda bulunmak için aşağıdaki adımları takip edin:
-```bash
-git clone https://github.com/kullanici_adi/device-checkpoint-center.git
-cd device-checkpoint-center
-git checkout -b yeni-ozellik
-git add .
-git commit -m "Yeni özellik eklendi: ..."
-git push origin yeni-ozellik
-```
----
-
 ## İletişim
 Proje ile ilgili sorularınız için benimle iletişime geçebilirsiniz:
 - **Muhammet Emir Koltuk**  
