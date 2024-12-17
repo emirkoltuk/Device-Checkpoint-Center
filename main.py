@@ -5,16 +5,16 @@ from PIL import Image, ImageTk
 import subprocess
 import os
 
-script_directory = '/opt/dcs/scripts/'
-image_path = '/opt/dcs/image.png'
-icon_path = '/opt/dcs/icon.png' 
-backup_file_path = '/opt/dcs/data/FULL_BACKUP/full_backup_different.txt'
-mac_diff_file_path = '/opt/dcs/data/MAC_TABLE/mac-different.txt'
-vlan_diff_file_path = '/opt/dcs/data/VLAN/vlan-different.txt'
-access_diff_file_path = '/opt/dcs/data/ACCESS_LIST/access-different.txt'
-istatus_diff_file_path = '/opt/dcs/data/INTERFACE_STATUS/interface-status-different.txt'
-backup_different_file_path = '/opt/dcs/data/FULL_BACKUP/full_backup_different.txt'
-auth_session_different_file_path = '/opt/dcs/data/AUTH-SESSION/auth-session-different.txt'
+script_directory = '../scripts/'
+image_path = '../image.png'
+icon_path = '../icon.png' 
+backup_file_path = '../data/FULL_BACKUP/full_backup_different.txt'
+mac_diff_file_path = '../data/MAC_TABLE/mac-different.txt'
+vlan_diff_file_path = '../data/VLAN/vlan-different.txt'
+access_diff_file_path = '../data/ACCESS_LIST/access-different.txt'
+istatus_diff_file_path = '../data/INTERFACE_STATUS/interface-status-different.txt'
+backup_different_file_path = '../data/FULL_BACKUP/full_backup_different.txt'
+auth_session_different_file_path = '../data/AUTH-SESSION/auth-session-different.txt'
 
 def run_backup(ip_address, username, password):
     try:
