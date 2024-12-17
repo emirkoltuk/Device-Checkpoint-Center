@@ -6,8 +6,8 @@ import subprocess
 import os
 
 script_directory = './scripts/'
-image_path = './assets/image.png'
-icon_path = './assets/icon.png' 
+image_path = './image.png'
+icon_path = './icon.png' 
 backup_file_path = './data/FULL_BACKUP/full_backup_different.txt'
 mac_diff_file_path = './data/MAC_TABLE/mac-different.txt'
 vlan_diff_file_path = './data/VLAN/vlan-different.txt'
