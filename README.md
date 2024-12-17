@@ -23,28 +23,27 @@ Bu uygulama; VLAN, MAC Table, Interface Status, Access List, Full Backup ve Auth
 Bu projeyi kullanmak için aşağıdaki adımları takip edin:
 
 ### 1. Projeyi Klonlayın
-bash
+```bash
 git clone https://github.com/kullanici_adi/device-checkpoint-center.git
 cd device-checkpoint-center
-
+```
 
 ### 2. Gerekli Kütüphaneleri Yükleyin
-bash
+```bash
 pip install pillow, paramiko
-
+```
 > **Not**: Tkinter kütüphanesi Python'un standart kütüphaneleri arasında yer alır.
 
 ### 3. Uygulamayı Çalıştırın
 Ana dosyayı çalıştırmak için aşağıdaki komutu kullanın:
-bash
+```bash
 python main.py
-
+```
 
 ---
 
 ## 📅 Proje Dizin Yapısı
-device-checkpoint-center/
-│
+```
 ├── scripts/                  # Yedekleme ve karşılaştırma scriptleri
 │   ├── adım1_mac.py          # Adım 1: MAC Table toplama
 │   ├── adım1_full_backup.py  # Adım 1: Full Backup toplama
@@ -58,7 +57,7 @@ device-checkpoint-center/
 │   ├── adım2_vlan.py         # Adım 2: VLAN karşılaştırma
 │   └── adım2_access.py       # Adım 2: Access List karşılaştırma
 │
-├── data/                     
+├── data/                     # Karşılaştırma sonuçları
 │   ├── FULL_BACKUP/          # Full Backup farkları
 │   ├── MAC_TABLE/            # MAC Table farkları
 │   ├── VLAN/                 # VLAN farkları
@@ -68,9 +67,8 @@ device-checkpoint-center/
 │
 ├── image.png                 # Ana ekran için logo
 ├── icon.png                  # Uygulama simgesi
-└── main.py                   # Ana Tkinter uygulaması
-
-
+└── main.py                   # Ana Uygulama
+```
 
 ---
 
@@ -83,14 +81,14 @@ Uygulamayı çalıştırdığınızda aşağıdaki seçenekler sunulacaktır:
 
 ### 2. Yedekleme İşlemi
 - **"Adım 1"** sekmesini kullanarak gerekli veriyi toplamak için ilgili script çalıştırılır.
-- Veriler, data/ klasörü altına kaydedilir.
+- Veriler, `data/` klasörü altına kaydedilir.
 
 ### 3. Karşılaştırma İşlemi
 - **"Adım 2"** sekmesinden karşılaştırma işlemlerini başlatabilirsiniz.
 - Farklılıklar özel txt dosyaları içine kaydedilir ve uygulama üzerinde görüntülenir.
 
 ### 4. Sonuçları Görüntüleme
-- Oluşturulan fark raporları data/ klasöründeki ilgili alt dizinlerde saklanır.
+- Oluşturulan fark raporları `data/` klasöründeki ilgili alt dizinlerde saklanır.
 
 ---
 
@@ -123,14 +121,14 @@ Uygulamayı çalıştırdığınızda aşağıdaki seçenekler sunulacaktır:
 - Daha detaylı raporlama arayüzü.
 
 Katkıda bulunmak için aşağıdaki adımları takip edin:
-bash
+```bash
 git clone https://github.com/kullanici_adi/device-checkpoint-center.git
 cd device-checkpoint-center
 git checkout -b yeni-ozellik
 git add .
 git commit -m "Yeni özellik eklendi: ..."
 git push origin yeni-ozellik
-
+```
 ---
 
 ## İletişim
