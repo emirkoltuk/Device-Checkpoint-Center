@@ -24,14 +24,14 @@ def run_backup(ip_address, username, password):
         subprocess.run(['python', os.path.join(script_directory, 'adım1_access.py'), ip_address, username, password], check=True)
         subprocess.run(['python', os.path.join(script_directory, 'adım1_interface-status.py'), ip_address, username, password], check=True)
         subprocess.run(['python', os.path.join(script_directory, 'adım1_auth-session.py'), ip_address, username, password], check=True)
-        messagebox.showinfo("Bilgi", "Backup Authentication Session, Interface Status, VLAN, MAC Table, and Access List data is completed.")
+        messagebox.showinfo("Info", "Backup Authentication Session, Interface Status, VLAN, MAC Table, and Access List data is completed.")
     except subprocess.CalledProcessError as e:
         messagebox.showerror("Hata", f"Backup çalıştırılırken bir hata oluştu: {e}")
 
 def run_step2_auth_session(ip_address, username, password):
     try:
         subprocess.run(['python', os.path.join(script_directory, 'adım2_auth-session.py'), ip_address, username, password], check=True)
-        messagebox.showinfo("Bilgi", "New device Auth-Session data is completed and compared with Backup.")
+        messagebox.showinfo("Info", "New device Auth-Session data is completed and compared with Backup.")
         show_file_content(auth_session_different_file_path, authsession_tab)
     except subprocess.CalledProcessError as e:
         messagebox.showerror("Hata", f"Adım2 çalıştırılırken bir hata oluştu: {e}")
@@ -39,7 +39,7 @@ def run_step2_auth_session(ip_address, username, password):
 def run_step2_istatus(ip_address, username, password):
     try:
         subprocess.run(['python', os.path.join(script_directory, 'adım2_interface-status.py'), ip_address, username, password], check=True)
-        messagebox.showinfo("Bilgi", "New device Interface Status data is completed and compared with Backup.")
+        messagebox.showinfo("Info", "New device Interface Status data is completed and compared with Backup.")
         show_file_content(istatus_diff_file_path, istatus_tab)
     except subprocess.CalledProcessError as e:
         messagebox.showerror("Hata", f"Adım2 çalıştırılırken bir hata oluştu: {e}")
@@ -47,7 +47,7 @@ def run_step2_istatus(ip_address, username, password):
 def run_step2_mac(ip_address, username, password):
     try:
         subprocess.run(['python', os.path.join(script_directory, 'adım2_mac.py'), ip_address, username, password], check=True)
-        messagebox.showinfo("Bilgi", "New device MAC Table data is completed and compared with Backup.")
+        messagebox.showinfo("Info", "New device MAC Table data is completed and compared with Backup.")
         show_file_content(mac_diff_file_path, mac_tab)
     except subprocess.CalledProcessError as e:
         messagebox.showerror("Hata", f"Adım2 çalıştırılırken bir hata oluştu: {e}")
@@ -55,7 +55,7 @@ def run_step2_mac(ip_address, username, password):
 def run_step2_vlan(ip_address, username, password):
     try:
         subprocess.run(['python', os.path.join(script_directory, 'adım2_vlan.py'), ip_address, username, password], check=True)
-        messagebox.showinfo("Bilgi", "New device VLAN data is completed and compared with Backup.")
+        messagebox.showinfo("Info", "New device VLAN data is completed and compared with Backup.")
         show_file_content(vlan_diff_file_path, vlan_tab)
     except subprocess.CalledProcessError as e:
         messagebox.showerror("Hata", f"Yeni VLAN toplarken bir hata oluştu: {e}")
@@ -63,7 +63,7 @@ def run_step2_vlan(ip_address, username, password):
 def run_step2_access(ip_address, username, password):
     try:
         subprocess.run(['python', os.path.join(script_directory, 'adım2_access.py'), ip_address, username, password], check=True)
-        messagebox.showinfo("Bilgi", "New device Access List data is completed and compared with Backup.")
+        messagebox.showinfo("Info", "New device Access List data is completed and compared with Backup.")
         show_file_content(access_diff_file_path, access_tab)
     except subprocess.CalledProcessError as e:
         messagebox.showerror("Hata", f"Yeni Access List toplarken bir hata oluştu: {e}")
@@ -71,7 +71,7 @@ def run_step2_access(ip_address, username, password):
 def run_full_backup(ip_address, username, password):
     try:
         subprocess.run(['python', os.path.join(script_directory, 'adım1_full_backup.py'), ip_address, username, password], check=True)
-        messagebox.showinfo("Bilgi", "Full backup işlemi tamamlandı.")
+        messagebox.showinfo("Info", "Full backup işlemi tamamlandı.")
         show_file_content(backup_file_path, backup_tab)
     except subprocess.CalledProcessError as e:
         messagebox.showerror("Hata", f"Full backup alınırken bir hata oluştu: {e}")
@@ -79,7 +79,7 @@ def run_full_backup(ip_address, username, password):
 def run_step2_full_backup(ip_address, username, password):
     try:
         subprocess.run(['python', os.path.join(script_directory, 'adım2_full_backup.py'), ip_address, username, password], check=True)
-        messagebox.showinfo("Bilgi", "Yeni FULL BACKUP işlemi tamamlandı ve Backup ile karşılaştırıldı.")
+        messagebox.showinfo("Info", "Yeni FULL BACKUP işlemi tamamlandı ve Backup ile karşılaştırıldı.")
         show_file_content(backup_different_file_path, full_backup_diff_tab)
     except subprocess.CalledProcessError as e:
         messagebox.showerror("Hata", f"FULL BACKUP çalıştırılırken bir hata oluştu: {e}")
@@ -94,7 +94,7 @@ def show_file_content(file_path, tab):
         messagebox.showerror("Hata", f"Dosya okunurken bir hata oluştu: {e}")
 
 def main():
-    global notebook, tab_content, backup_tab, mac_tab, vlan_tab, access_tab, canvas, full_backup_diff_tab, istatus_tab, authsession_tab
+    global notebook, tab_content, backup_tab, mac_tab, vlan_tab, access_tab, full_backup_diff_tab, istatus_tab, authsession_tab
 
     root = tk.Tk()
     root.title("Device Checkpoint Center")

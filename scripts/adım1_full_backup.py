@@ -1,6 +1,5 @@
 import paramiko
 import sys
-import os
 
 # SSH bağlantısı için gerekli bilgiler
 hostname = sys.argv[1]  # IP adresi komut satırından alınacak
@@ -11,8 +10,8 @@ port = 22
 # Full backup komutu
 command = 'show running-config view full'
 
-# Dosya yolu (yeni dosya yolu dizin yapısına göre güncellendi)
-file_path = os.path.join(os.getcwd(), 'data', 'FULL_BACKUP', 'full_backup_different.txt')
+# Dosya yolu
+file_path = './data/FULL_BACKUP/old_full_backup.txt'
 
 # SSH bağlantısı kurma ve komutu çalıştırma
 def get_full_backup(hostname, port, username, password, command, file_path):
@@ -22,8 +21,6 @@ def get_full_backup(hostname, port, username, password, command, file_path):
         ssh.connect(hostname, port, username, password)
         stdin, stdout, stderr = ssh.exec_command(command)
         output = stdout.read().decode()
-        
-        # Veriyi dosyaya yazma
         with open(file_path, 'w') as file:
             file.write(output)
         print(f"Tam yedek {file_path} dosyasına yazıldı.")

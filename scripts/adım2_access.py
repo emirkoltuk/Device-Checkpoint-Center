@@ -12,10 +12,10 @@ port = 22
 command = 'show access-list'
 
 # Dosya yolları, hostname eklenerek oluşturulacak
-desktop_path = os.path.join(os.getcwd(), 'data', 'ACCESS_LIST')
-old_access_file_path = os.path.join(desktop_path, 'old-access.txt')
-new_access_file_path = os.path.join(desktop_path, 'new-access.txt')
-different_file_path = os.path.join(desktop_path, 'access-different.txt')
+desktop_path = './data/ACCESS_LIST/'
+old_access_file_path = os.path.join(desktop_path, f'old-access.txt')
+new_access_file_path = os.path.join(desktop_path, f'new-access.txt')
+different_file_path = os.path.join(desktop_path, f'access-different.txt')
 
 # SSH bağlantısı kurma ve komutu çalıştırma
 def get_access_list(hostname, port, username, password, command, file_path):

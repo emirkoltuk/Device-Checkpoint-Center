@@ -1,6 +1,5 @@
 import paramiko
 import sys
-import os
 
 # SSH bağlantısı için gerekli bilgiler
 hostname = sys.argv[1]  # IP adresi komut satırından alınacak
@@ -10,19 +9,17 @@ port = 22
 
 command = 'show authentication session'
 
-# Dosya yolu (yeni dosya yolu dizin yapısına göre güncellendi)
-file_path = os.path.join(os.getcwd(), 'data', 'AUTH-SESSION', 'auth-session-different.txt')
+# Dosya yolu
+file_path = './data/AUTH-SESSIO/old-auth-session.txt'
 
 # SSH bağlantısı kurma ve komutu çalıştırma
-def get_auth_session(hostname, port, username, password, command, file_path):
+def get_interface_status(hostname, port, username, password, command, file_path):
     try:
         ssh = paramiko.SSHClient()
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         ssh.connect(hostname, port, username, password)
         stdin, stdout, stderr = ssh.exec_command(command)
         output = stdout.read().decode()
-        
-        # Veriyi dosyaya yazma
         with open(file_path, 'w') as file:
             file.write(output)
         print(f"Authentication Session {file_path} dosyasına yazıldı.")
@@ -31,5 +28,5 @@ def get_auth_session(hostname, port, username, password, command, file_path):
     finally:
         ssh.close()
 
-# Fonksiyonu çağırarak Authentication Session verisini çekme ve dosyaya yazma
-get_auth_session(hostname, port, username, password, command, file_path)
+# Fonksiyonu çağırarak Access list tablosunu çekme ve dosyaya yazma
+get_interface_status(hostname, port, username, password, command, file_path)

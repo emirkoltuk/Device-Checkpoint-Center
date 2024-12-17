@@ -11,10 +11,10 @@ port = 22
 command = 'show authentication session'
 
 # Dosya yolları, hostname eklenerek oluşturulacak
-desktop_path = os.path.join(os.getcwd(), 'data', 'AUTH-SESSION')
-old_authsession_file_path = os.path.join(desktop_path, 'old-auth-session.txt')
-new_authsession_file_path = os.path.join(desktop_path, 'new-auth-session.txt')
-different_file_path = os.path.join(desktop_path, 'auth-session-different.txt')
+desktop_path = './data/AUTH-SESSION/'
+old_authsession_file_path = os.path.join(desktop_path, f'old-auth-session.txt')
+new_authsession_file_path = os.path.join(desktop_path, f'new-auth-session.txt')
+different_file_path = os.path.join(desktop_path, f'auth-session-different.txt')
 
 # SSH bağlantısı kurma ve komutu çalıştırma
 def get_auth_session(hostname, port, username, password, command, file_path):
@@ -45,7 +45,6 @@ def compare_authsession_files(old_file, new_file, diff_file):
     except Exception as e:
         print(f"Hata: {e}")
 
-# Yeni Authentication Session tablosunu çekme ve dosyaya yazma
 get_auth_session(hostname, port, username, password, command, new_authsession_file_path)
 
 # Dosyaları karşılaştırma

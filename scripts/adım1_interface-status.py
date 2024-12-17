@@ -1,6 +1,5 @@
 import paramiko
 import sys
-import os
 
 # SSH bağlantısı için gerekli bilgiler
 hostname = sys.argv[1]  # IP adresi komut satırından alınacak
@@ -10,8 +9,8 @@ port = 22
 
 command = 'show interface status'
 
-# Dosya yolu (yeni dosya yolu dizin yapısına göre güncellendi)
-file_path = os.path.join(os.getcwd(), 'data', 'INTERFACE_STATUS', 'interface-status-different.txt')
+# Dosya yolu
+file_path = './data/INTERFACE_STATUS/old-interface-status.txt'
 
 # SSH bağlantısı kurma ve komutu çalıştırma
 def get_interface_status(hostname, port, username, password, command, file_path):
@@ -21,8 +20,6 @@ def get_interface_status(hostname, port, username, password, command, file_path)
         ssh.connect(hostname, port, username, password)
         stdin, stdout, stderr = ssh.exec_command(command)
         output = stdout.read().decode()
-        
-        # Veriyi dosyaya yazma
         with open(file_path, 'w') as file:
             file.write(output)
         print(f"Interface status {file_path} dosyasına yazıldı.")
@@ -31,5 +28,5 @@ def get_interface_status(hostname, port, username, password, command, file_path)
     finally:
         ssh.close()
 
-# Fonksiyonu çağırarak Interface status verisini çekme ve dosyaya yazma
+# Fonksiyonu çağırarak Access list tablosunu çekme ve dosyaya yazma
 get_interface_status(hostname, port, username, password, command, file_path)

@@ -12,11 +12,10 @@ port = 22
 command = 'show vlan'
 
 # Dosya yolları
-project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))  # project-root dizin yolu
-data_path = os.path.join(project_root, 'data', 'VLAN')
-old_vlan_file_path = os.path.join(data_path, 'old-vlan.txt')
-new_vlan_file_path = os.path.join(data_path, 'new-vlan.txt')
-different_file_path = os.path.join(data_path, 'vlan-different.txt')
+desktop_path = './data/VLAN/'
+old_vlan_file_path = os.path.join(desktop_path, f'old-vlan.txt')
+new_vlan_file_path = os.path.join(desktop_path, f'new-vlan.txt')
+different_file_path = os.path.join(desktop_path, f'vlan-different.txt')
 
 # SSH bağlantısı kurma ve komutu çalıştırma
 def get_vlan_table(hostname, port, username, password, command, file_path):
@@ -34,7 +33,6 @@ def get_vlan_table(hostname, port, username, password, command, file_path):
     finally:
         ssh.close()
 
-# Dosyaları karşılaştırma
 def compare_vlan_files(old_file, new_file, diff_file):
     try:
         with open(old_file, 'r') as f1, open(new_file, 'r') as f2:
@@ -47,16 +45,8 @@ def compare_vlan_files(old_file, new_file, diff_file):
     except Exception as e:
         print(f"Hata: {e}")
 
-# Eski VLAN dosyasının var olup olmadığını kontrol etme
-if os.path.exists(old_vlan_file_path):
-    print("Eski VLAN dosyası bulundu, yeni yedek alınacak ve farklar karşılaştırılacak.")
-    # Yeni VLAN tablosunu çekme ve dosyaya yazma
-    get_vlan_table(hostname, port, username, password, command, new_vlan_file_path)
-    
-    # Dosyaları karşılaştırma
-    compare_vlan_files(old_vlan_file_path, new_vlan_file_path, different_file_path)
-else:
-    print(f"Eski VLAN dosyası bulunamadı: {old_vlan_file_path}. Yeni yedek alınacak.")
-    # Yeni VLAN tablosunu çekme ve dosyaya yazma
-    get_vlan_table(hostname, port, username, password, command, new_vlan_file_path)
-    print(f"Yeni yedek {new_vlan_file_path} dosyasına kaydedildi.")
+# Yeni VLAN tablosunu çekme ve dosyaya yazma
+get_vlan_table(hostname, port, username, password, command, new_vlan_file_path)
+
+# Dosyaları karşılaştırma
+compare_vlan_files(old_vlan_file_path, new_vlan_file_path, different_file_path)
