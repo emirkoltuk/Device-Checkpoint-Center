@@ -24,7 +24,7 @@ Bu projeyi kullanmak için aşağıdaki adımları takip edin:
 
 ### 1. Projeyi Klonlayın
 ```bash
-git clone https://github.com/kullanici_adi/device-checkpoint-center.git
+git clone https://github.com/emirkoltuk/device-checkpoint-center.git
 cd device-checkpoint-center
 ```
 
