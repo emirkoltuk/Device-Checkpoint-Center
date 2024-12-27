@@ -2,22 +2,18 @@ import paramiko
 import os
 import sys
 
-# SSH bağlantısı için gerekli bilgiler
 hostname = sys.argv[1]  # IP adresi komut satırından alınacak
 username = sys.argv[2]  # SSH kullanıcı adı komut satırından alınacak
 password = sys.argv[3]  # SSH şifresi komut satırından alınacak
 port = 22
 
-# Access list tablosunu çekmek için kullanılacak komut
 command = 'show access-list'
 
-# Dosya yolları, hostname eklenerek oluşturulacak
 desktop_path = './data/ACCESS_LIST/'
 old_access_file_path = os.path.join(desktop_path, f'old-access.txt')
 new_access_file_path = os.path.join(desktop_path, f'new-access.txt')
 different_file_path = os.path.join(desktop_path, f'access-different.txt')
 
-# SSH bağlantısı kurma ve komutu çalıştırma
 def get_access_list(hostname, port, username, password, command, file_path):
     try:
         ssh = paramiko.SSHClient()
@@ -33,7 +29,6 @@ def get_access_list(hostname, port, username, password, command, file_path):
     finally:
         ssh.close()
 
-# Dosyaları karşılaştırma
 def compare_access_files(old_file, new_file, diff_file):
     try:
         with open(old_file, 'r') as f1, open(new_file, 'r') as f2:
@@ -46,8 +41,6 @@ def compare_access_files(old_file, new_file, diff_file):
     except Exception as e:
         print(f"Hata: {e}")
 
-# Yeni Access list tablosunu çekme ve dosyaya yazma
 get_access_list(hostname, port, username, password, command, new_access_file_path)
 
-# Dosyaları karşılaştırma
 compare_access_files(old_access_file_path, new_access_file_path, different_file_path)

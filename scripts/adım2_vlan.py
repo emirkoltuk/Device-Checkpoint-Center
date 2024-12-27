@@ -2,22 +2,18 @@ import paramiko
 import os
 import sys
 
-# SSH bağlantısı için gerekli bilgiler
 hostname = sys.argv[1]  # IP adresi komut satırından alınacak
 username = sys.argv[2]  # SSH kullanıcı adı komut satırından alınacak
 password = sys.argv[3]  # SSH şifresi komut satırından alınacak
 port = 22
 
-# VLAN tablosunu çekmek için kullanılacak komut
 command = 'show vlan'
 
-# Dosya yolları
 desktop_path = './data/VLAN/'
 old_vlan_file_path = os.path.join(desktop_path, f'old-vlan.txt')
 new_vlan_file_path = os.path.join(desktop_path, f'new-vlan.txt')
 different_file_path = os.path.join(desktop_path, f'vlan-different.txt')
 
-# SSH bağlantısı kurma ve komutu çalıştırma
 def get_vlan_table(hostname, port, username, password, command, file_path):
     try:
         ssh = paramiko.SSHClient()
@@ -45,8 +41,6 @@ def compare_vlan_files(old_file, new_file, diff_file):
     except Exception as e:
         print(f"Hata: {e}")
 
-# Yeni VLAN tablosunu çekme ve dosyaya yazma
 get_vlan_table(hostname, port, username, password, command, new_vlan_file_path)
 
-# Dosyaları karşılaştırma
 compare_vlan_files(old_vlan_file_path, new_vlan_file_path, different_file_path)

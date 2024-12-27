@@ -1,19 +1,15 @@
 import paramiko
 import sys
 
-# SSH bağlantısı için gerekli bilgiler
 hostname = sys.argv[1]  # IP adresi komut satırından alınacak
 username = sys.argv[2]  # SSH kullanıcı adı komut satırından alınacak
 password = sys.argv[3]  # SSH şifresi komut satırından alınacak
 port = 22
 
-# MAC address tablosunu çekmek için kullanılacak komut
 command = 'show mac address-table'
 
-# Dosya yolu
 file_path = './data/MAC_TABLE/old-mac.txt'
 
-# SSH bağlantısı kurma ve komutu çalıştırma
 def get_mac_address_table(hostname, port, username, password, command, file_path):
     try:
         ssh = paramiko.SSHClient()
@@ -29,5 +25,4 @@ def get_mac_address_table(hostname, port, username, password, command, file_path
     finally:
         ssh.close()
 
-# Fonksiyonu çağırarak MAC address tablosunu çekme ve dosyaya yazma
 get_mac_address_table(hostname, port, username, password, command, file_path)

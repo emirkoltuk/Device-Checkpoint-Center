@@ -2,22 +2,18 @@ import paramiko
 import os
 import sys
 
-# SSH bağlantısı için gerekli bilgiler
 hostname = sys.argv[1]  # IP adresi komut satırından alınacak
 username = sys.argv[2]  # SSH kullanıcı adı komut satırından alınacak
 password = sys.argv[3]  # SSH şifresi komut satırından alınacak
 port = 22
 
-# MAC address tablosunu çekmek için kullanılacak komut
 command = 'show mac address-table'
 
-# Dosya yolları
 desktop_path = './data/MAC_TABLE/'
 old_mac_file_path = os.path.join(desktop_path, f'old-mac.txt')
 new_mac_file_path = os.path.join(desktop_path, f'new-mac.txt')
 different_file_path = os.path.join(desktop_path, f'mac-different.txt')
 
-# SSH bağlantısı kurma ve komutu çalıştırma
 def get_mac_address_table(hostname, port, username, password, command, file_path):
     try:
         ssh = paramiko.SSHClient()
@@ -45,8 +41,6 @@ def compare_mac_files(old_file, new_file, diff_file):
     except Exception as e:
         print(f"Hata: {e}")
 
-# Yeni MAC address tablosunu çekme ve dosyaya yazma
 get_mac_address_table(hostname, port, username, password, command, new_mac_file_path)
 
-# Dosyaları karşılaştırma
 compare_mac_files(old_mac_file_path, new_mac_file_path, different_file_path)

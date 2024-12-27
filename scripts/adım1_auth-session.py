@@ -1,7 +1,6 @@
 import paramiko
 import sys
 
-# SSH bağlantısı için gerekli bilgiler
 hostname = sys.argv[1]  # IP adresi komut satırından alınacak
 username = sys.argv[2]  # SSH kullanıcı adı komut satırından alınacak
 password = sys.argv[3]  # SSH şifresi komut satırından alınacak
@@ -9,10 +8,8 @@ port = 22
 
 command = 'show authentication session'
 
-# Dosya yolu
 file_path = './data/AUTH-SESSIO/old-auth-session.txt'
 
-# SSH bağlantısı kurma ve komutu çalıştırma
 def get_interface_status(hostname, port, username, password, command, file_path):
     try:
         ssh = paramiko.SSHClient()
@@ -28,5 +25,4 @@ def get_interface_status(hostname, port, username, password, command, file_path)
     finally:
         ssh.close()
 
-# Fonksiyonu çağırarak Access list tablosunu çekme ve dosyaya yazma
 get_interface_status(hostname, port, username, password, command, file_path)
